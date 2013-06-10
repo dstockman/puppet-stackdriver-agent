@@ -4,13 +4,13 @@ Installs stackdriver-agent.  Tested with AWS Linux 2013.03 with Puppet 2.7.21.  
 
 ## Usage
 
-The stackdriver class includes the client
+The stackdriver class includes the client:
 
-include stackdriver
+	include stackdriver
 
 You must specify your stackdriver api key:
 
-class { "stackdriver::params":
-   stackdriver_apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOBIG"
-}
+	class { "stackdriver::params":
+	   stackdriver_apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOBIG"
+	}
 
