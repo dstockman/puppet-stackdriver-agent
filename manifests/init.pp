@@ -17,6 +17,5 @@ class stackdriver (
     group => root,
     content => template("stackdriver/stackdriver.erb"),
     require => Package["stackdriver-agent"],
-    refreshonly => Service['stackdriver-agent']
   }
 }
