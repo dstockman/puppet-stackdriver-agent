@@ -1,0 +1,9 @@
+LoadPlugin "redis"
+<Plugin redis>
+  <Node "<%= fqdn %>">
+    Host "<%= stackdriver_redis_host %>"
+    Port "<%= stackdriver_redis_port %>"
+    Timeout <%= stackdriver_redis_timeout %>
+  </Node>
+</Plugin>
+
