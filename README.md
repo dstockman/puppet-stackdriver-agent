@@ -4,7 +4,7 @@ Installs stackdriver-agent.  Tested with AWS Linux 2013.03 with Puppet 2.7.22.  
 
 ## Usage
 
-This module requires a Stackdriver account.  Free trial accounts are available at their website(http://www.stackdriver.com/signup).
+This module requires a Stackdriver account.  Free trial accounts are available at their [website](http://www.stackdriver.com/signup).
 
 ### Base Agent
 
@@ -30,7 +30,7 @@ To configure the redis plugin on the local host running on port 6739.  Note: thi
 
 ## See Also
 
-* Stackdriver Website: http://www.stackdriver.com(http://www.stackdriver.com)
-* Stackdriver Signup:  http://www.stackdriver.com/signup(http://www.stackdriver.com/signup)
+* Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
+* Stackdriver Signup:  [http://www.stackdriver.com/signup](http://www.stackdriver.com/signup)
 
 
