@@ -1,6 +1,6 @@
 LoadPlugin postgresql
 <Plugin postgresql>
-   <Database template1>
+   <Database <%= stackdriver_postgres_dbname %>>
        # Host and port are only used for TCP/IP connections
        # Leaving them out indicates you wish to connect via domain sockets
        # Host "localhost"

@@ -4,16 +4,19 @@
 #
 # == Examples:
 #
-#  Redis plugin configuration
+#  Mongo plugin configuration
 #  
 #  class { 'stackdriver::mongo':
-#    stackdriver_mongo_host    => "localhost",
-#    stackdriver_mongo_port    => "6739",
-#    stackdriver_mongo_timeout => "2000",
+#    stackdriver_mongo_user       => "stackdriver",
+#    stackdriver_mongo_password   => "password",
+#    stackdriver_mongo_host       => "localhost",
+#    stackdriver_mongo_port       => "27017",
 #  }
 class stackdriver::mongo ( 
   $stackdriver_mongo_user = "stackdriver",
   $stackdriver_mongo_password = undef,
+  $stackdriver_mongo_host     = localhost,
+  $stackdriver_mongo_port     = 27017,
 ) {
   
   file { "/opt/stackdriver/collectd/etc/collectd.d/mongo.conf":

@@ -4,15 +4,18 @@
 #
 # == Examples:
 #
-#  Redis plugin configuration
+#  nginx plugin configuration
 #  
 #  class { 'stackdriver::nginx':
-#    stackdriver_nginx_host    => "localhost",
-#    stackdriver_nginx_port    => "6739",
-#    stackdriver_nginx_timeout => "2000",
+#    stackdriver_nginx_user        => "stackdriver",
+#    stackdriver_nginx_password    => "password",
+#    stackdriver_nginx_url         => "http://127.0.0.1/nginx_status",
 #  }
-class stackdriver::nginx {
-  
+class stackdriver::nginx (
+  $stackdriver_nginx_user = undef,
+  $stackdriver_nginx_password = undef,
+  $stackdriver_nginx_url = "http://127.0.0.1/nginx_status",
+){
 
   file { "/opt/stackdriver/collectd/etc/collectd.d/nginx.conf":
     ensure  => file,

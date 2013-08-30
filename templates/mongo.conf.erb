@@ -1,8 +1,8 @@
 LoadPlugin mongodb
 
 <Plugin "mongodb">
-    Host "127.0.0.1"
-    Port "27017"
+    Host "<%= stackdriver_mongo_host %>"
+    Port "<%= stackdriver_mongo_port %>"
 
    #  If you restricted access to the database, you can
    #  set the username and password here
