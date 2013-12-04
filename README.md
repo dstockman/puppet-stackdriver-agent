@@ -59,6 +59,16 @@ Configures the nginx plugin on the local host running on port 80.
 	  stackdriver_nginx_url         => "http://127.0.0.1/nginx_status",
 	}
 
+### apache
+
+Configures the apache plugin on the local host running on port 80.
+
+	class { 'stackdriver::apache':
+	  stackdriver_apache_user     => 'stackdriver',
+	  stackdriver_apache_password => 'password',
+	  stackdriver_apache_url      => 'http://127.0.0.1/mod_status?auto',
+	}
+
 ## See Also
 
 * Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
