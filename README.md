@@ -69,6 +69,12 @@ Configures the apache plugin on the local host running on port 80.
 	  stackdriver_apache_url      => 'http://127.0.0.1/mod_status?auto',
 	}
 
+### Elasticsearch
+
+Configures the Elasticsearch plugin on the local host using port 9200.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/268555-elasticsearch-plugin).
+
+	class { 'stackdriver::elasticsearch': }
+
 ## See Also
 
 * Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
