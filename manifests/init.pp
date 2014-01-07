@@ -7,10 +7,12 @@
 #  Basic agent configuration
 #
 #  class { 'stackdriver':
-#    stackdriver_apikey => "OMGBECKLOOKATHERBUTTITSJUSTSOROUND"
+#    stackdriver_apikey => "OMGBECKLOOKATHERBUTTITSJUSTSOROUND",
+#    package_ensure     => latest,
 #  }
 class stackdriver (
   $stackdriver_apikey = undef,
+  $package_ensure     = installed,
 ) {
 
 	case $::operatingsystem {
@@ -38,7 +40,7 @@ class stackdriver (
 			}
 
   		package { "stackdriver-agent": 
-    		ensure  => installed, 
+    		ensure  => "${package_ensure}",
     		require => Yumrepo["stackdriver-agent"],
   		}
 		}
