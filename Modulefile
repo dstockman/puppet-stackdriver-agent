@@ -1,0 +1,6 @@
+name 'puppet-stackdriver-agent'
+version '0.0.1'
+source 'git@github.com:maverixbio/puppet-stackdriver-agent.git'
+author 'denise stockman'
+description 'Puppet module to install stackdriver'
+project_page 'https://github.com/maverixbio/puppet-stackdriver-agent'

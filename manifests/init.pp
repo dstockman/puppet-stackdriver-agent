@@ -7,7 +7,7 @@
 #  Basic agent configuration
 #
 #  class { 'stackdriver':
-#    stackdriver_apikey => "OMGBECKLOOKATHERBUTTITSJUSTSOROUND"
+#    stackdriver_apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOROUND"
 #  }
 class stackdriver (
   $stackdriver_apikey = undef,
