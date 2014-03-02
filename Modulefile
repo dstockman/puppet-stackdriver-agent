@@ -1,4 +1,4 @@
-name 'puppet-stackdriver-agent'
+name 'dstockman-stackdriver'
 version '0.0.1'
 source 'git@github.com:maverixbio/puppet-stackdriver-agent.git'
 author 'denise stockman'
