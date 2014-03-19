@@ -7,11 +7,11 @@ Installs stackdriver-agent.
 
 - Puppet version 3 or greater with Hiera support
 - Puppet Forge modules:
-    | OS Family     | Module        |
-    | ------------- |:-------------:|
-    | ALL           | puppetlabs/stdlib |
-    | Debian        | puppetlabs/apt |
-    | Windows       | puppetlabs/registry, joshcooper/powershell |
+    | OS Family      | Module                                       |
+    | :------------- |:-------------:                               |
+    | ALL            | [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) |
+    | Debian         | [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt) |
+    | Windows        | [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry), [joshcooper/powershell](https://forge.puppetlabs.com/joshcooper/powershell) |
 
 Supported/tested Operating Systems by OS Family:
 
@@ -33,6 +33,7 @@ The stackdriver class includes the client:
 
 ```puppet
 include stackdriver
+```
 
 You must specify your Stackdriver API key:
 
@@ -40,6 +41,7 @@ You must specify your Stackdriver API key:
 
 ```yaml
 stackdriver::apikey: 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG'
+```
 
 * Using Puppet Code
 
@@ -47,6 +49,7 @@ stackdriver::apikey: 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG'
 class { 'stackdriver':
     apikey => 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG',
 }
+```
 
 ## Plugins
 ---
@@ -62,6 +65,7 @@ Two methods are supported for enabling plugins.
 Plugin settings may be configured via Hiera using the following format:
 ```yaml
 stackdriver::plugin::<plugin name>::<param>:<value>
+```
 
 ##### Usage
 - Using an External Node Classifier
@@ -73,11 +77,13 @@ stackdriver::plugin::<plugin name>::<param>:<value>
     stackdriver::plugins:
         - 'plugin name'
         - 'plugin name'
+    ```
 
 - Using Puppet Code
     Plugins may be enabled via puppet code while keeping the plugin settings in Hiera.
     ```puppet
     stackdriver::plugin { 'plugin name': }
+    ```
 
 #### Using Puppet Code
 
@@ -95,6 +101,7 @@ Plugin settings may be specified during class load.
         param1 => 'value',
         param2 => 'value',
     }
+    ```
 
 
 ### Configuration
@@ -111,6 +118,7 @@ Configures the redis plugin on the local host running on port 6379.  Note: this 
 stackdriver::plugin::redis::host:       'localhost'
 stackdriver::plugin::redis::port:       6379
 stackdriver::plugin::redis::timeout:    2000
+```
 
 
 ### MongoDB
@@ -122,6 +130,7 @@ stackdriver::plugin::mongo::host:       'localhost'
 stackdriver::plugin::mongo::user:       'stackdriver'
 stackdriver::plugin::mongo::password:   'ahzae8aiLiKoe'
 stackdriver::plugin::mongo::port:       27017
+```
 
 ### Postgresql
 
@@ -131,6 +140,7 @@ Configures the Postgreqsql plugin on the local host using UNIX domain sockets.  
 stackdriver::plugin::postgres::user:        'stackdriver'
 stackdriver::plugin::postgres::password:    'xoiboov9Pai5e'
 stackdriver::plugin::postgres::dbname:      '<REQUIRED PARAM>'
+```
 
 ### nginx
 
@@ -140,6 +150,7 @@ Configures the nginx plugin on the local host running on port 80.
 stackdriver::plugin::nginx::user:       'stackdriver'
 stackdriver::plugin::nginx::password:   'Eef3haeziqu3j'
 stackdriver::plugin::nginx::dbname:     'http://127.0.0.1/nginx_status'
+```
 
 ### apache
 
@@ -150,6 +161,7 @@ User and Password settings are only required if the URL requires authentication.
 stackdriver::plugin::apache::user:      '(OPTIONAL USER)'
 stackdriver::plugin::apache::password:  '(OPTIONAL USER PASSWORD)'
 stackdriver::plugin::apache::url:       'http://127.0.0.1/mod_status?auto'
+```
 
 
 ### Elasticsearch
