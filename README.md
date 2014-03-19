@@ -6,8 +6,9 @@ Installs stackdriver-agent.
 
 - Puppet version 3 or greater with Hiera support
 - Puppet Forge modules:
-| OS Family      | Module                                       |
-| :------------- |:-------------:                               |
+
+| OS Family      | Module |
+| :------------- |:-------------: |
 | ALL            | [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) |
 | Debian         | [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt) |
 | Windows        | [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry), [joshcooper/powershell](https://forge.puppetlabs.com/joshcooper/powershell) |
