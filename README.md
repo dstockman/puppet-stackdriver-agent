@@ -3,15 +3,14 @@
 Installs stackdriver-agent.
 
 ## Requirements
----
 
 - Puppet version 3 or greater with Hiera support
 - Puppet Forge modules:
-    | OS Family      | Module                                       |
-    | :------------- |:-------------:                               |
-    | ALL            | [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) |
-    | Debian         | [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt) |
-    | Windows        | [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry), [joshcooper/powershell](https://forge.puppetlabs.com/joshcooper/powershell) |
+| OS Family      | Module                                       |
+| :------------- |:-------------:                               |
+| ALL            | [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib) |
+| Debian         | [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt) |
+| Windows        | [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry), [joshcooper/powershell](https://forge.puppetlabs.com/joshcooper/powershell) |
 
 Supported/tested Operating Systems by OS Family:
 
@@ -23,7 +22,6 @@ Supported/tested Operating Systems by OS Family:
     * Fedora
 
 ## Usage
----
 
 This module requires a Stackdriver account.  Free trial accounts are available at their [website](http://www.stackdriver.com/signup).
 
@@ -37,7 +35,7 @@ include stackdriver
 
 You must specify your Stackdriver API key:
 
-* Using Hiera
+* Using Hiera (recommended)
 
 ```yaml
 stackdriver::apikey: 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG'
@@ -52,9 +50,9 @@ class { 'stackdriver':
 ```
 
 ## Plugins
----
 
 ### Usage
+---
 
 Two methods are supported for enabling plugins.
 
@@ -69,10 +67,13 @@ stackdriver::plugin::<plugin name>::<param>:<value>
 
 ##### Usage
 - Using an External Node Classifier
-    Load the stackdriver::plugin::<plugin name> class
+
+    Load the `stackdriver::plugin::<plugin name>` class
 
 - Using Hiera
+
     Plugins may optionally be loaded using hiera itself. NOTE: an array merge is used to collect the plugin list.
+
     ```yaml
     stackdriver::plugins:
         - 'plugin name'
@@ -80,7 +81,9 @@ stackdriver::plugin::<plugin name>::<param>:<value>
     ```
 
 - Using Puppet Code
+
     Plugins may be enabled via puppet code while keeping the plugin settings in Hiera.
+
     ```puppet
     stackdriver::plugin { 'plugin name': }
     ```
@@ -93,9 +96,11 @@ Plugin settings may be specified during class load.
 
 ##### Usage
 - Using an External Node Classifier
-    Load the stackdriver::plugin::<plugin name> class and specify the class parameters.
+
+    Load the `stackdriver::plugin::<plugin name>` class and specify the class parameters.
 
 - Using Puppet Code
+
     ```puppet
     class { 'stackdriver::plugin::<plugin name>':
         param1 => 'value',
@@ -105,6 +110,7 @@ Plugin settings may be specified during class load.
 
 
 ### Configuration
+---
 
 Plugin defaults are shown using the recommended Hiera format.
 Values enclosed in <> do not have defaults and are required.
