@@ -1,8 +1,8 @@
 LoadPlugin "nginx"
 <Plugin "nginx">
-  URL "<%= stackdriver_nginx_url %>"
+  URL "<%= @url %>"
 #  If you restricted access to your stats, you can
 #  set the username and password here
-  User "<%= stackdriver_nginx_user %>"
-  Password "<%= stackdriver_nginx_password %>"
+  User "<%= @user %>"
+  Password "<%= @password %>"
 </Plugin>

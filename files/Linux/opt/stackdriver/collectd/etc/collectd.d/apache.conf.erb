@@ -1,13 +1,13 @@
 LoadPlugin "apache"
 <Plugin "apache">
    <Instance "localhost">
-       URL "<%= @stackdriver_apache_url %>"
+       URL "<%= @url %>"
 # If you restricted access with auth, specify it here
 <%=
     auth = ""
-    if @stackdriver_apache_user
-       auth += "       User \"" + @stackdriver_apache_user + "\"\n"
-       auth += "       Password \"" + @stackdriver_apache_password + "\""
+    if @user
+       auth += "       User \"" + @user + "\"\n"
+       auth += "       Password \"" + @password + "\""
     else
        auth += "#       User \"collectd\"\n"
        auth += "#       Password \"\""

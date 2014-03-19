@@ -1,13 +1,13 @@
 LoadPlugin mongodb
 
 <Plugin "mongodb">
-    Host "<%= stackdriver_mongo_host %>"
-    Port "<%= stackdriver_mongo_port %>"
+    Host "<%= @host %>"
+    Port "<%= @port %>"
 
    #  If you restricted access to the database, you can
    #  set the username and password here
-   User "<%= stackdriver_mongo_user %>"
-   Password "<%= stackdriver_mongo_password %>"
+   User "<%= @user %>"
+   Password "<%= @password %>"
 
    # For performance/eventually consistent trade-offs you may add this line
    # AllowSecondaryQuery true

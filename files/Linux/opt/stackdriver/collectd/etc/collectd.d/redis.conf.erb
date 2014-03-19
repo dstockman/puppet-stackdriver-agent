@@ -1,0 +1,9 @@
+LoadPlugin "redis"
+<Plugin redis>
+  <Node "<%= @fqdn %>">
+    Host "<%= @host %>"
+    Port "<%= @port %>"
+    Timeout <%= @timeout %>
+  </Node>
+</Plugin>
+

@@ -1,12 +1,12 @@
 LoadPlugin postgresql
 <Plugin postgresql>
-   <Database <%= stackdriver_postgres_dbname %>>
+   <Database <%= @dbname %>>
        # Host and port are only used for TCP/IP connections
        # Leaving them out indicates you wish to connect via domain sockets
        # Host "localhost"
        # Port "5432"
-       User "<%= stackdriver_postgres_user %>"
-       Password "<%= stackdriver_postgres_password %>"
+       User "<%= @user %>"
+       Password "<%= @password %>"
        Query backends
        Query transactions
        Query queries

@@ -1,8 +1,29 @@
 # puppet-stackdriver-agent
 
-Installs stackdriver-agent.  Tested with AWS Linux 2013.03 with Puppet 2.7.22 and includes support for Debian/Ubuntu distributions which is untested.
+Installs stackdriver-agent.
+
+## Requirements
+---
+
+- Puppet version 3 or greater with Hiera support
+- Puppet Forge modules:
+    | OS Family     | Module        |
+    | ------------- |:-------------:|
+    | ALL           | puppetlabs/stdlib |
+    | Debian        | puppetlabs/apt |
+    | Windows       | puppetlabs/registry, joshcooper/powershell |
+
+Supported/tested Operating Systems by OS Family:
+
+* Debian
+    * Ubuntu
+* RedHat
+    * Amazon
+    * CentOS
+    * Fedora
 
 ## Usage
+---
 
 This module requires a Stackdriver account.  Free trial accounts are available at their [website](http://www.stackdriver.com/signup).
 
@@ -10,70 +31,131 @@ This module requires a Stackdriver account.  Free trial accounts are available a
 
 The stackdriver class includes the client:
 
-	include stackdriver
+```puppet
+include stackdriver
 
-You must specify your stackdriver api key:
+You must specify your Stackdriver API key:
 
-	class { "stackdriver::params":
-	   stackdriver_apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOBIG",
-	}
+* Using Hiera
+
+```yaml
+stackdriver::apikey: 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG'
+
+* Using Puppet Code
+
+```puppet
+class { 'stackdriver':
+    apikey => 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG',
+}
+
+## Plugins
+---
+
+### Usage
+
+Two methods are supported for enabling plugins.
+
+#### Using Hiera (recommended)
+
+##### Configuration
+
+Plugin settings may be configured via Hiera using the following format:
+```yaml
+stackdriver::plugin::<plugin name>::<param>:<value>
+
+##### Usage
+- Using an External Node Classifier
+    Load the stackdriver::plugin::<plugin name> class
+
+- Using Hiera
+    Plugins may optionally be loaded using hiera itself. NOTE: an array merge is used to collect the plugin list.
+    ```yaml
+    stackdriver::plugins:
+        - 'plugin name'
+        - 'plugin name'
+
+- Using Puppet Code
+    Plugins may be enabled via puppet code while keeping the plugin settings in Hiera.
+    ```puppet
+    stackdriver::plugin { 'plugin name': }
+
+#### Using Puppet Code
+
+##### Configuration
+
+Plugin settings may be specified during class load.
+
+##### Usage
+- Using an External Node Classifier
+    Load the stackdriver::plugin::<plugin name> class and specify the class parameters.
+
+- Using Puppet Code
+    ```puppet
+    class { 'stackdriver::plugin::<plugin name>':
+        param1 => 'value',
+        param2 => 'value',
+    }
+
+
+### Configuration
+
+Plugin defaults are shown using the recommended Hiera format.
+Values enclosed in <> do not have defaults and are required.
+Values enclosed in () have an undef default and are optional.
 
 ### Redis
 
-Configures the redis plugin on the local host running on port 6739.  Note: this module requires hiredis-devel be available to the system.
+Configures the redis plugin on the local host running on port 6379.  Note: this module requires hiredis-devel be available to the system.
 
-	class { 'stackdriver::redis':
-	  stackdriver_redis_host    => "localhost",
-	  stackdriver_redis_port    => "6739",
-	  stackdriver_redis_timeout => "2000",
-	}
+```yaml
+stackdriver::plugin::redis::host:       'localhost'
+stackdriver::plugin::redis::port:       6379
+stackdriver::plugin::redis::timeout:    2000
+
 
 ### MongoDB
 
 Configures the MongoDB plugin on the local host running on port 27017.
 
-	class { 'stackdriver::mongo':
-    stackdriver_mongo_user       => "stackdriver",
-    stackdriver_mongo_password   => "password",
-    stackdriver_mongo_host       => "localhost",
-    stackdriver_mongo_port       => "27017",
-	}
-	
+```yaml
+stackdriver::plugin::mongo::host:       'localhost'
+stackdriver::plugin::mongo::user:       'stackdriver'
+stackdriver::plugin::mongo::password:   'ahzae8aiLiKoe'
+stackdriver::plugin::mongo::port:       27017
+
 ### Postgresql
 
 Configures the Postgreqsql plugin on the local host using UNIX domain sockets.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/232555-postgresql-plugin).
 
-	class { 'stackdriver::postgres':
-	  stackdriver_postgres_user        => "stackdriver",
-	  stackdriver_postgres_password    => "password",
-	  stackdriver_postgres_dbname      => "dbname",
-	}
+```yaml
+stackdriver::plugin::postgres::user:        'stackdriver'
+stackdriver::plugin::postgres::password:    'xoiboov9Pai5e'
+stackdriver::plugin::postgres::dbname:      '<REQUIRED PARAM>'
 
 ### nginx
 
 Configures the nginx plugin on the local host running on port 80.
 
-	class { 'stackdriver::nginx':
-	  stackdriver_nginx_user        => "stackdriver",
-	  stackdriver_nginx_password    => "password",
-	  stackdriver_nginx_url         => "http://127.0.0.1/nginx_status",
-	}
+```yaml
+stackdriver::plugin::nginx::user:       'stackdriver'
+stackdriver::plugin::nginx::password:   'Eef3haeziqu3j'
+stackdriver::plugin::nginx::dbname:     'http://127.0.0.1/nginx_status'
 
 ### apache
 
 Configures the apache plugin on the local host running on port 80.
+User and Password settings are only required if the URL requires authentication.
 
-	class { 'stackdriver::apache':
-	  stackdriver_apache_user     => 'stackdriver',
-	  stackdriver_apache_password => 'password',
-	  stackdriver_apache_url      => 'http://127.0.0.1/mod_status?auto',
-	}
+```yaml
+stackdriver::plugin::apache::user:      '(OPTIONAL USER)'
+stackdriver::plugin::apache::password:  '(OPTIONAL USER PASSWORD)'
+stackdriver::plugin::apache::url:       'http://127.0.0.1/mod_status?auto'
+
 
 ### Elasticsearch
 
 Configures the Elasticsearch plugin on the local host using port 9200.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/268555-elasticsearch-plugin).
 
-	class { 'stackdriver::elasticsearch': }
 
 ## See Also
 
