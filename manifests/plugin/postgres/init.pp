@@ -1,7 +1,7 @@
 # vim: tabstop=2 expandtab shiftwidth=2 softtabstop=2 foldmethod=marker
 #
 # == Class: stackdriver::plugin::postgres
-# 
+#
 # Enable Postgres Agent Plugin for Stackdriver Agent
 #
 # === Parameters
@@ -43,7 +43,7 @@ class stackdriver::plugin::postgres(
 
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/postgres.conf',
 
-  $dbname,
+  $dbname,  # REQUIRED Param
   $user     = 'stackdriver',
   $password = 'xoiboov9Pai5e',
 

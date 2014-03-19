@@ -7,8 +7,8 @@
 class stackdriver::service inherits stackdriver {
 
   service { $svc:
-    ensure    => running, 
-    enable    => true, 
+      ensure    => running,
+      enable    => true,
   }
 
 }

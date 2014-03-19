@@ -1,7 +1,7 @@
 # vim: tabstop=2 expandtab shiftwidth=2 softtabstop=2 foldmethod=marker
 #
 # == Class: stackdriver::plugin::elasticsearch
-# 
+#
 # Enable Elasticsearch Agent Plugin for Stackdriver Agent
 #
 # {Stackdriver's Support Site}[http://feedback.stackdriver.com/knowledgebase/articles/268555-elasticsearch-plugin]
