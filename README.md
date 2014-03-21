@@ -21,6 +21,9 @@ Supported/tested Operating Systems by OS Family:
     * Amazon
     * CentOS
     * Fedora
+* Windows
+    * Server 2008
+    * Server 2012
 
 ## Usage
 
