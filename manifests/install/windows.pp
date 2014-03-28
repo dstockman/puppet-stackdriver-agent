@@ -44,7 +44,7 @@ class stackdriver::install::windows(
       # NOTE: /S for silent install (API registry key will be empty)
       command     => "C:${installer} /S; Start-Sleep -s 30",
       unless      => "if(!(Test-Path \'${uninstallkey}\')) { exit 1 } else { exit 0 }",
-      require     => File[$installer],
+      require     => File["C:${installer}"],
   }
 
 }
