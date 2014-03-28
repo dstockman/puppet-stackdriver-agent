@@ -44,6 +44,10 @@ class stackdriver::install::redhat(
 
 ) inherits stackdriver {
 
+  validate_string ( $pkg    )
+  validate_string ( $ensure )
+  validate_hash   ( $repo   )
+
   # Setup repo
   ensure_resource('yumrepo', 'stackdriver-agent', $repo)
 

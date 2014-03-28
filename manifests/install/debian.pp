@@ -55,6 +55,11 @@ class stackdriver::install::debian(
 
 ) inherits stackdriver {
 
+  validate_string ( $pkg        )
+  validate_string ( $ensure     )
+  validate_hash   ( $aptkey     )
+  validate_hash   ( $aptsource  )
+
   # Setup repo
   ensure_resource('apt::key', 'stackdriver', $aptkey)
 

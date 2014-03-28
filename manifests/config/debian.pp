@@ -20,6 +20,8 @@ class stackdriver::config::debian(
 
 ) inherits stackdriver {
 
+  validate_string ( $sysconfig )
+
   file { $sysconfig:
     ensure  => file,
     owner   => 'root',

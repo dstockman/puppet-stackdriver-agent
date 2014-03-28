@@ -20,6 +20,8 @@ class stackdriver::config::redhat(
 
 ) inherits stackdriver {
 
+  validate_string ( $sysconfig )
+
   file { $sysconfig:
     ensure  => file,
     owner   => 'root',

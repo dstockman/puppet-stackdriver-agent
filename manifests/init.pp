@@ -36,10 +36,13 @@ class stackdriver (
 
 ) {
 
+  validate_string ( $apikey )
+  validate_string ( $svc    )
+
   # Runtime class definitions
-  $iclass = "${name}::install::${::osfamily}"
-  $cclass = "${name}::config::${::osfamily}"
-  $sclass = "${name}::service"
+  $iclass = "::${name}::install::${::osfamily}"
+  $cclass = "::${name}::config::${::osfamily}"
+  $sclass = "::${name}::service"
 
 
   # OS Family specific installation

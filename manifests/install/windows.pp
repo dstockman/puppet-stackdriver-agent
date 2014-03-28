@@ -25,7 +25,10 @@ class stackdriver::install::windows(
 
 ) inherits stackdriver {
 
-  file { $installer:
+  validate_string($installer)
+  validate_string($uninstallkey)
+
+  file { "C:${installer}":
     ensure  => file,
     owner   => 'SYSTEM',
     group   => 'Administrators',
@@ -39,7 +42,7 @@ class stackdriver::install::windows(
       logoutput   => true,
       timeout     => 600,
       # NOTE: /S for silent install (API registry key will be empty)
-      command     => "C:/${installer} /S; Start-Sleep -s 30",
+      command     => "C:${installer} /S; Start-Sleep -s 30",
       unless      => "if(!(Test-Path \'${uninstallkey}\')) { exit 1 } else { exit 0 }",
       require     => File[$installer],
   }
