@@ -40,22 +40,23 @@ class stackdriver (
   validate_string ( $svc    )
 
   # Runtime class definitions
-  $iclass = "::${name}::install::${::osfamily}"
-  $cclass = "::${name}::config::${::osfamily}"
-  $sclass = "::${name}::service"
+  $iclass = "${name}::install::${::osfamily}"
+  $cclass = "${name}::config::${::osfamily}"
+  $sclass = "${name}::service"
 
 
   # OS Family specific installation
+  class { "::${iclass}": }
   contain $iclass
 
 
   # OS Family specific configuration
-  class { $cclass: require => Class[$iclass]; }
+  class { "::${cclass}": require => Class[$iclass]; }
   contain $cclass
 
 
   # Service
-  class { $sclass: require => Class[$cclass]; }
+  class { "::${sclass}": require => Class[$cclass]; }
   contain $sclass
 
 

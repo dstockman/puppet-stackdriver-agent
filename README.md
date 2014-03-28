@@ -4,7 +4,7 @@ Installs stackdriver-agent.
 
 ## Requirements
 
-- Puppet version 3 or greater with Hiera support
+- Puppet version 3.4 or greater with Hiera support
 - Puppet Forge modules:
 
 | OS Family      | Module |

@@ -49,10 +49,10 @@ class stackdriver::plugin::elasticsearch(
   validate_string ( $config )
 
 
-  contain "::${name}::install"
+  contain "${name}::install"
 
   class { "::${name}::config": require => Class["::${name}::install"] }
-  contain "::${name}::config"
+  contain "${name}::config"
 
 }
 

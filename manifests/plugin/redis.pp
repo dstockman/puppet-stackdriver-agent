@@ -60,10 +60,10 @@ class stackdriver::plugin::redis(
   validate_string ( $config )
   validate_string ( $host   )
 
-  contain "::${name}::install"
+  contain "${name}::install"
 
   class { "::${name}::config": require => Class["::${name}::install"] }
-  contain "::${name}::config"
+  contain "${name}::config"
 
 }
 

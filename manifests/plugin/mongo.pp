@@ -59,10 +59,10 @@ class stackdriver::plugin::mongo(
   validate_string ( $user     )
   validate_string ( $password )
 
-  #contain "::${name}::install"
+  #contain "${name}::install"
 
   #class { "::${name}::config": require => Class["::${name}::install"] }
-  contain "::${name}::config"
+  contain "${name}::config"
 
 }
 
