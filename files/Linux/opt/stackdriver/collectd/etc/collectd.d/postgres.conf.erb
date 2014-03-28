@@ -1,0 +1,17 @@
+LoadPlugin postgresql
+<Plugin postgresql>
+   <Database <%= @dbname %>>
+       # Host and port are only used for TCP/IP connections
+       # Leaving them out indicates you wish to connect via domain sockets
+       # Host "localhost"
+       # Port "5432"
+       User "<%= @user %>"
+       Password "<%= @password %>"
+       Query backends
+       Query transactions
+       Query queries
+       Query table_states
+       Query disk_io
+       Query disk_usage
+ </Database>
+</Plugin>

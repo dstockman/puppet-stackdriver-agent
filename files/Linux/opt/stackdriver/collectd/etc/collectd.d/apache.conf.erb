@@ -1,0 +1,18 @@
+LoadPlugin "apache"
+<Plugin "apache">
+   <Instance "localhost">
+       URL "<%= @url %>"
+# If you restricted access with auth, specify it here
+<%=
+    auth = ""
+    if @user
+       auth += "       User \"" + @user + "\"\n"
+       auth += "       Password \"" + @password + "\""
+    else
+       auth += "#       User \"collectd\"\n"
+       auth += "#       Password \"\""
+    end
+    auth
+%>
+   </Instance>
+</Plugin>
