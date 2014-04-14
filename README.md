@@ -179,6 +179,20 @@ stackdriver::plugin::apache::url:       'http://127.0.0.1/mod_status?auto'
 Configures the Elasticsearch plugin on the local host using port 9200.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/268555-elasticsearch-plugin).
 
 
+### RabbitMQ
+
+Configures the RabbitMQ plugin on the local host running on port 5672.
+All settings are required.
+
+```yaml
+stackdriver::plugin::rabbitmq::vhost:     '%2F'
+stackdriver::plugin::rabbitmq::port:      '15672'
+stackdriver::plugin::rabbitmq::queue:     '(Queue Name)'
+stackdriver::plugin::rabbitmq::user:      'guest'
+stackdriver::plugin::rabbitmq::password:  'guest'
+```
+
+
 ## See Also
 
 * Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
