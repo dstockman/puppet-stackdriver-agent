@@ -28,12 +28,22 @@ class stackdriver::install::windows(
   validate_string($installer)
   validate_string($uninstallkey)
 
+  if ! defined(File['/tmp']) {
+    file { '/tmp':
+      ensure  => 'directory',
+      mode    => '0775',
+      owner   => 'SYSTEM',
+      group   => 'Administrators',
+    }
+  }
+
   file { "C:${installer}":
     ensure  => file,
     owner   => 'SYSTEM',
     group   => 'Administrators',
     mode    => '0775',
     source  => "puppet:///modules/stackdriver/${::kernel}/${installer}",
+    require => File['/tmp'];
   }
 
   exec {
