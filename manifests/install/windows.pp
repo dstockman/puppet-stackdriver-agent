@@ -25,11 +25,11 @@ class stackdriver::install::windows(
 
 ) inherits stackdriver {
 
-  validate_string($installer)
-  validate_string($uninstallkey)
+  validate_string ( $installer    )
+  validate_string ( $uninstallkey )
 
-  if ! defined(File['/tmp']) {
-    file { '/tmp':
+  if ! defined(File['C:/tmp']) {
+    file { 'C:/tmp':
       ensure  => 'directory',
       mode    => '0775',
       owner   => 'SYSTEM',
@@ -43,7 +43,7 @@ class stackdriver::install::windows(
     group   => 'Administrators',
     mode    => '0775',
     source  => "puppet:///modules/stackdriver/${::kernel}/${installer}",
-    require => File['/tmp'];
+    require => File['C:/tmp'];
   }
 
   exec {
