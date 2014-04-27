@@ -126,8 +126,8 @@ Configures the redis plugin on the local host running on port 6379.  Note: this 
 
 ```yaml
 stackdriver::plugin::redis::host:       'localhost'
-stackdriver::plugin::redis::port:       6379
-stackdriver::plugin::redis::timeout:    2000
+stackdriver::plugin::redis::port:       '6379'
+stackdriver::plugin::redis::timeout:    '2000'
 ```
 
 
@@ -139,7 +139,7 @@ Configures the MongoDB plugin on the local host running on port 27017.
 stackdriver::plugin::mongo::host:       'localhost'
 stackdriver::plugin::mongo::user:       'stackdriver'
 stackdriver::plugin::mongo::password:   'ahzae8aiLiKoe'
-stackdriver::plugin::mongo::port:       27017
+stackdriver::plugin::mongo::port:       '27017'
 ```
 
 ### Postgresql
@@ -159,7 +159,7 @@ Configures the nginx plugin on the local host running on port 80.
 ```yaml
 stackdriver::plugin::nginx::user:       'stackdriver'
 stackdriver::plugin::nginx::password:   'Eef3haeziqu3j'
-stackdriver::plugin::nginx::dbname:     'http://127.0.0.1/nginx_status'
+stackdriver::plugin::nginx::url:        'http://127.0.0.1/nginx_status'
 ```
 
 ### apache
