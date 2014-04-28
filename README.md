@@ -193,6 +193,35 @@ stackdriver::plugin::rabbitmq::password:  'guest'
 ```
 
 
+### Tomcat
+
+Configures monitoring for Tomcat on the local host running JMX on port 9991.  
+For reference on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/244387-tomcat-monitoring).
+
+You can use the sysconfig parameter to create the /etc/sysconfig/jmxtrans override config.
+
+```yaml
+stackdriver::plugin::tomcat::ensure:  'present'
+stackdriver::plugin::tomcat::host:    'localhost'
+stackdriver::plugin::tomcat::port:    '9991'
+stackdriver::plugin::tomcat::path:    '/mnt/jmxtrans'
+stackdriver::plugin::tomcat::sysconfig:
+    'JAVA_HOME': '/usr/java/jdk1.7.0_45/'
+```
+
+Pre-requisite: Enabling JMX remote on Tomcat is outside the scope of this module, 
+below are the changes you need to apply to your Tomcat.
+
+```
+# Enable JMX Monitoring on Tomcat (/etc/sysconfig/tomcat)
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote"
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.port=9991"
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=<%= @fqdn %>"
+```
+
+
 ## See Also
 
 * Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
