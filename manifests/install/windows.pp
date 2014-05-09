@@ -10,6 +10,11 @@
 #
 # ---
 #
+# [*ensure*]
+# - Default - present
+# - {Puppet Package Ensure Attribute}[http://docs.puppetlabs.com/references/latest/type.html#package-attribute-ensure]
+# - NOTE: currently a NOOP until stackdriver supports proper windows packages
+#
 # [*installer*]
 # - Default - /tmp/Stackdriverinstaller-0.3.exe
 # - Stackdriver Windows installer
