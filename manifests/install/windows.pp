@@ -20,11 +20,13 @@
 #
 class stackdriver::install::windows(
 
+  $ensure       = 'present', # NOOP until stackdriver supports proper windows packages
   $installer    = '/tmp/Stackdriverinstaller-0.3.exe',
   $uninstallkey = 'HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\StackdriverAgent',
 
 ) inherits stackdriver {
 
+  validate_string ( $ensure       )
   validate_string ( $installer    )
   validate_string ( $uninstallkey )
 
