@@ -10,6 +10,11 @@
 #
 # ---
 #
+# [*ensure*]
+# - Default - present
+# - {Puppet Package Ensure Attribute}[http://docs.puppetlabs.com/references/latest/type.html#package-attribute-ensure]
+# - NOTE: currently a NOOP until stackdriver supports proper windows packages
+#
 # [*installer*]
 # - Default - /tmp/Stackdriverinstaller-0.3.exe
 # - Stackdriver Windows installer
@@ -20,11 +25,13 @@
 #
 class stackdriver::install::windows(
 
+  $ensure       = 'present', # NOOP until stackdriver supports proper windows packages
   $installer    = '/tmp/Stackdriverinstaller-0.3.exe',
   $uninstallkey = 'HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\StackdriverAgent',
 
 ) inherits stackdriver {
 
+  validate_string ( $ensure       )
   validate_string ( $installer    )
   validate_string ( $uninstallkey )
 
