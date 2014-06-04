@@ -30,4 +30,7 @@ In chronological order:
     * Hiera support
     * Windows support
 
+* Pav Shpilev <p.shpilev@gmail.com>
+    * Code restructure & bugfixes
+    * Memcached plugin support
 

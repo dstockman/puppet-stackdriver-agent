@@ -15,7 +15,7 @@ LoadPlugin target_set
 
 LoadPlugin "curl_json"
 <Plugin curl_json>
-<URL "http://localhost:9200/_cluster/nodes/_local/stats?all=true">
+<URL "http://<%= @host %>:<%= @port %>/_nodes/_local/stats/">
     Instance "elasticsearch"
     <Key "nodes/*/indices/docs/count">
       Type "gauge"
@@ -32,13 +32,13 @@ LoadPlugin "curl_json"
     <Key "nodes/*/indices/indexing/index_time_in_millis">
       Type "counter"
     </Key>
-<Key "nodes/*/indices/indexing/delete_total">
-          Type "counter"
-      </Key>
-      <Key "nodes/*/indices/indexing/delete_time_in_millis">
-          Type "counter"
-      </Key>
-      <Key "nodes/*/indices/get/total">
+    <Key "nodes/*/indices/indexing/delete_total">
+      Type "counter"
+    </Key>
+    <Key "nodes/*/indices/indexing/delete_time_in_millis">
+      Type "counter"
+    </Key>
+    <Key "nodes/*/indices/get/total">
       Type "counter"
     </Key>
     <Key "nodes/*/indices/get/time_in_millis">
