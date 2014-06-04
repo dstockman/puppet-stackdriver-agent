@@ -8,7 +8,7 @@ class stackdriver::plugin::elasticsearch::config inherits stackdriver::plugin::e
 
   file { $config:
     ensure  => file,
-    source  => "puppet:///modules/stackdriver/${::kernel}/${config}",
+    content => template("stackdriver/${::kernel}/${config}.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0444',

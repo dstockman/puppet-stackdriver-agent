@@ -17,6 +17,14 @@
 # - Default - /opt/stackdriver/collectd/etc/collectd.d/elasticsearch.conf
 # - Plugin configuration file
 #
+# [*host*]
+# - Default - localhost
+# - Target host
+#
+# [*port*]
+# - Default - 6379
+# - Target port
+#
 # === Usage
 # ---
 #
@@ -42,6 +50,9 @@ class stackdriver::plugin::elasticsearch(
   },
 
   $config = '/opt/stackdriver/collectd/etc/collectd.d/elasticsearch.conf',
+
+  $host     = 'localhost',
+  $port     = 9200,
 
 ) {
 
