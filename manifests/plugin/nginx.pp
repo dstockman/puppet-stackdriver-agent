@@ -8,20 +8,32 @@
 # ---
 #
 # [*config*]
-# - Default - /opt/stackdriver/collectd/etc/collectd.d/nginx.conf
+# - Default - /opt/stackdriver/collectd/etc/collectd.d/nginx.conf (string - absolute path)
 # - Plugin Configuration File
 #
 # [*url*]
-# - Default - http://127.0.0.1/nginx_status
+# - Default - http://127.0.0.1/nginx_status (string - URI)
 # - Target server URL
 #
 # [*user*]
-# - Default - stackdriver
+# - Default - undef (string)
 # - Target user
 #
 # [*password*]
-# - Default - Eef3haeziqu3j
+# - Default - undef (string)
 # - Target user password
+#
+# [*verifypeer*]
+# - Default - undef (boolean)
+# - Enable or disable peer SSL certificate verification
+#
+# [*verifyhost*]
+# - Default - undef (boolean)
+# - Enable or disable peer host name verification
+#
+# [*cacert*]
+# - Default - undef (string - absolute path)
+# - File that holds one or more SSL certificates
 #
 # === Usage
 # ---
@@ -41,18 +53,25 @@
 #
 class stackdriver::plugin::nginx(
 
-  $config   =  '/opt/stackdriver/collectd/etc/collectd.d/nginx.conf',
+  $config     =  '/opt/stackdriver/collectd/etc/collectd.d/nginx.conf',
 
-  $url      = 'http://127.0.0.1/nginx_status',
-  $user     = 'stackdriver',
-  $password = 'Eef3haeziqu3j',
+  $url        = 'http://127.0.0.1/nginx_status',
+  $user       = undef,
+  $password   = undef,
+  $verifypeer = undef,
+  $verifyhost = undef,
+  $cacert     = undef,
 
 ) {
 
-  validate_string ( $config   )
-  validate_string ( $url      )
-  validate_string ( $user     )
-  validate_string ( $password )
+  validate_absolute_path  ( $config )
+  validate_string         ( $url    )
+
+  if $user        != undef { validate_string        ( $user       ) }
+  if $password    != undef { validate_string        ( $password   ) }
+  if $verifypeer  != undef { validate_bool          ( $verifypeer ) }
+  if $verifyhost  != undef { validate_bool          ( $verifyhost ) }
+  if $cacert      != undef { validate_absolute_path ( $cacert     ) }
 
   #contain "${name}::install"
 
