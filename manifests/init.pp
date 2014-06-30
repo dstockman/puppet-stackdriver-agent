@@ -26,6 +26,7 @@
 class stackdriver (
 
   $apikey = undef,
+  $ensure = 'present',
 
   $svc = $::osfamily ? {
     'windows' => 'StackdriverAgent',
@@ -46,7 +47,10 @@ class stackdriver (
 
 
   # OS Family specific installation
-  class { "::${iclass}": }
+  class { "::${iclass}":
+    ensure => $ensure,
+    notify => Class[$sclass],
+  }
   contain $iclass
 
 

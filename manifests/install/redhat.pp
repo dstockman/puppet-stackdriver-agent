@@ -31,7 +31,7 @@
 #
 class stackdriver::install::redhat(
 
-  $pkg    = 'stackdriver-agent',
+  $pkg    = [ 'stackdriver-agent', 'stackdriver-extractor' ],
   $ensure = 'present',
 
   $repo = {
@@ -44,7 +44,7 @@ class stackdriver::install::redhat(
 
 ) inherits stackdriver {
 
-  validate_string ( $pkg    )
+  validate_array  ( $pkg    )
   validate_string ( $ensure )
   validate_hash   ( $repo   )
 
