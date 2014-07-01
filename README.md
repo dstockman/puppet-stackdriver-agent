@@ -154,12 +154,20 @@ stackdriver::plugin::postgres::dbname:      '<REQUIRED PARAM>'
 
 ### nginx
 
-Configures the nginx plugin on the local host running on port 80.
+Configures the nginx plugin on the local host running on port 80 (with authentication).
 
 ```yaml
+stackdriver::plugin::nginx::url:        'http://127.0.0.1/nginx_status'
 stackdriver::plugin::nginx::user:       'stackdriver'
 stackdriver::plugin::nginx::password:   'Eef3haeziqu3j'
-stackdriver::plugin::nginx::url:        'http://127.0.0.1/nginx_status'
+```
+
+Configures the nginx plugin on the local host running on port 443 (SSL, no authentication, no verification).
+
+```yaml
+stackdriver::plugin::nginx::url:        'https://127.0.0.1/nginx_status'
+stackdriver::plugin::nginx::verifypeer: false
+stackdriver::plugin::nginx::verifyhost: false
 ```
 
 ### apache

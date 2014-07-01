@@ -3,6 +3,24 @@ LoadPlugin "nginx"
   URL "<%= @url %>"
 #  If you restricted access to your stats, you can
 #  set the username and password here
+<% if @user -%>
   User "<%= @user %>"
+<% end -%>
+
+<% if @password -%>
   Password "<%= @password %>"
+<% end -%>
+
+<% if not @verifypeer.nil? -%>
+  VerifyPeer <%= @verifypeer %>
+<% end -%>
+
+<% if not @verifyhost.nil? -%>
+  VerifyHost <%= @verifyhost %>
+<% end -%>
+
+<% if @cacert -%>
+  CACert "<%= @cacert %>"
+<% end -%>
+
 </Plugin>
