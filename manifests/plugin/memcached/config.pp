@@ -1,10 +1,10 @@
 # vim: tabstop=2 expandtab shiftwidth=2 softtabstop=2 foldmethod=marker
 #
-# == Class: stackdriver::plugin::elasticsearch::config
+# == Class: stackdriver::plugin::memcached::config
 #
-# Configures Elasticsearch Agent Plugin for Stackdriver Agent
+# Configures Memcached Agent Plugin for Stackdriver Agent
 #
-class stackdriver::plugin::elasticsearch::config inherits stackdriver::plugin::elasticsearch {
+class stackdriver::plugin::memcached::config inherits stackdriver::plugin::memcached {
 
   file { $config:
     ensure  => file,

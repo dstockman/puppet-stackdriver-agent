@@ -122,7 +122,8 @@ Values enclosed in () have an undef default and are optional.
 
 ### Redis
 
-Configures the redis plugin on the local host running on port 6379.  Note: this module requires hiredis-devel be available to the system.
+Configures the redis plugin on the local host running on port 6379.
+Note: this module requires hiredis-devel be available to the system.
 
 ```yaml
 stackdriver::plugin::redis::host:       'localhost'
@@ -130,6 +131,15 @@ stackdriver::plugin::redis::port:       '6379'
 stackdriver::plugin::redis::timeout:    '2000'
 ```
 
+### Memcached
+
+Configures the memcahed plugin on the local host running on port 11211.
+All settings are optional.
+
+```yaml
+stackdriver::plugin::memcahed::host:       'localhost'
+stackdriver::plugin::memcahed::port:       '11211'
+```
 
 ### MongoDB
 
@@ -144,7 +154,8 @@ stackdriver::plugin::mongo::port:       '27017'
 
 ### Postgresql
 
-Configures the Postgreqsql plugin on the local host using UNIX domain sockets.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/232555-postgresql-plugin).
+Configures the Postgreqsql plugin on the local host using UNIX domain sockets.
+Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/232555-postgresql-plugin).
 
 ```yaml
 stackdriver::plugin::postgres::user:        'stackdriver'
@@ -184,7 +195,14 @@ stackdriver::plugin::apache::url:       'http://127.0.0.1/mod_status?auto'
 
 ### Elasticsearch
 
-Configures the Elasticsearch plugin on the local host using port 9200.  Prerequisites for this plugin are documented on Stackdriver's [support site](http://feedback.stackdriver.com/knowledgebase/articles/268555-elasticsearch-plugin).
+Configures the Elasticsearch plugin on the local host using port 9200.
+Host and Port settings are optional.
+Prerequisites for this plugin are documented on Stackdriver's [support site](http://support.stackdriver.com/customer/portal/articles/1491778-elasticsearch-plugin).
+
+```yaml
+stackdriver::plugin::elasticsearch::host:      'localhost'
+stackdriver::plugin::elasticsearch::port:      '9200'
+```
 
 
 ### RabbitMQ
@@ -234,5 +252,4 @@ JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=<%= @fqdn %>"
 
 * Stackdriver Website: [http://www.stackdriver.com](http://www.stackdriver.com)
 * Stackdriver Signup:  [http://www.stackdriver.com/signup](http://www.stackdriver.com/signup)
-
 
