@@ -49,15 +49,18 @@
 #
 class stackdriver::plugin::rabbitmq(
 
-  $config   =  '/opt/stackdriver/collectd/etc/collectd.d/rabbitmq.conf',
+  $pkg      = 'yajl',
+
+  $config   = '/opt/stackdriver/collectd/etc/collectd.d/rabbitmq.conf',
   $vhost    = '%2F',
-  $port     = '15672',
+  $port     = 15672,
   $queue    = undef,
   $user     = 'guest',
   $password = 'guest',
 
 ) {
 
+  validate_string ( $pkg      )
   validate_string ( $config   )
   validate_string ( $vhost    )
   validate_string ( $port     )
@@ -65,12 +68,10 @@ class stackdriver::plugin::rabbitmq(
   validate_string ( $password )
   validate_string ( $queue    )
 
-  contain "${name}::config"
+  contain "${name}::install"
 
-  # Install package
-  ensure_resource('package', 'yajl', {
-    'ensure'  => 'present',
-  })
+  class { "::${name}::config": require => Class["::${name}::install"] }
+  contain "${name}::config"
 
 }
 
