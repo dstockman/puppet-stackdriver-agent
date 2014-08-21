@@ -44,6 +44,8 @@ class stackdriver::plugin::memcached(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $config )
   validate_string ( $host   )
 

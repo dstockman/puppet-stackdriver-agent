@@ -58,6 +58,8 @@ class stackdriver::plugin::rabbitmq(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $config   )
   validate_string ( $vhost    )
   validate_string ( $port     )

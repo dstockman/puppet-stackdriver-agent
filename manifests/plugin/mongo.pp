@@ -54,6 +54,8 @@ class stackdriver::plugin::mongo(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $config   )
   validate_string ( $host     )
   validate_string ( $user     )

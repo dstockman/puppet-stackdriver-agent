@@ -56,6 +56,8 @@ class stackdriver::plugin::redis(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $pkg    )
   validate_string ( $config )
   validate_string ( $host   )

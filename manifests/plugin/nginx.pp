@@ -64,6 +64,8 @@ class stackdriver::plugin::nginx(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_absolute_path  ( $config )
   validate_string         ( $url    )
 
