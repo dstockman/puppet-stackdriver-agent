@@ -43,7 +43,7 @@ class stackdriver::install::debian(
 
   $aptkey = {
     'key'         => '7B190BD2',
-    'key_server'  => 'subkeys.pgp.net',
+    'key_source'  => 'https://app.stackdriver.com/RPM-GPG-KEY-stackdriver',
   },
 
   $aptsource = {
