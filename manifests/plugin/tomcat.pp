@@ -57,6 +57,8 @@ class stackdriver::plugin::tomcat(
   $apikey    = hiera('stackdriver::apikey'),
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $ensure )
   validate_string ( $host   )
   validate_string ( $port   )

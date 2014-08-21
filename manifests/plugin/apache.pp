@@ -49,6 +49,8 @@ class stackdriver::plugin::apache(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $config )
   validate_string ( $url    )
   if $user      { validate_string ( $user     ) }

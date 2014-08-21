@@ -49,6 +49,8 @@ class stackdriver::plugin::postgres(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   validate_string ( $config   )
   validate_string ( $dbname   )
   validate_string ( $user     )

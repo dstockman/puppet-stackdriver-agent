@@ -56,6 +56,8 @@ class stackdriver::plugin::elasticsearch(
 
 ) {
 
+  Class['stackdriver'] -> Class[$name]
+
   if $pkg { validate_string ( $pkg ) }
   validate_string ( $config )
 
