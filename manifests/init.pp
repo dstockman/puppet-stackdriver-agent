@@ -67,7 +67,7 @@ class stackdriver (
     service_enable => $service_enable,
     require => Class[$cclass],
    }
-  contain $sclass
+  include $sclass
 
 
   # Array of Plugins to load (optional)
