@@ -4,11 +4,15 @@
 #
 # Manages Stackdriver Agent Service
 #
-class stackdriver::service inherits stackdriver {
+class stackdriver::service(
+  $service_ensure = 'running',
+  $service_enable = 'true',
+  )inherits stackdriver {
+  
 
   service { $svc:
-      ensure    => running,
-      enable    => true,
+      ensure    => $service_ensure,
+      enable    => $service_enable,
   }
 
 }

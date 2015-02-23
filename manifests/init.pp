@@ -27,6 +27,8 @@ class stackdriver (
 
   $apikey = undef,
   $ensure = 'present',
+  $service_ensure = 'running',
+  $service_enable = 'true',
 
   $svc = $::osfamily ? {
     'windows' => 'StackdriverAgent',
@@ -60,8 +62,12 @@ class stackdriver (
 
 
   # Service
-  class { "::${sclass}": require => Class[$cclass]; }
-  contain $sclass
+  class { "::${sclass}": 
+    service_ensure => $service_ensure,
+    service_enable => $service_enable,
+    require => Class[$cclass],
+   }
+  include $sclass
 
 
   # Array of Plugins to load (optional)
