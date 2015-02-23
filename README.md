@@ -1,6 +1,4 @@
-# Pssst! This repo is no longer maintained and has moved to [here](http://github.com/dstockman/puppet-stackdriver-agent)
-
-## puppet-stackdriver-agent
+# puppet-stackdriver-agent
 
 Installs stackdriver-agent.
 
