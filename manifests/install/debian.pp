@@ -21,7 +21,7 @@
 # [*aptkey*]
 # - Default: (hash)
 #  {
-#    'key'        => '7B190BD2',
+#    'key'        => 'B10FDCDCEC088467D0069F423C6E15887B190BD2',
 #    'key_server' => 'subkeys.pgp.net',
 #  }
 # - Stackdriver APT repository authentication key
@@ -32,7 +32,7 @@
 #    'location'  => 'http://repo.stackdriver.com/apt',
 #    'release'   => $::lsbdistcodename,
 #    'repos'     => 'main',
-#    'key'       => '7B190BD2',
+#    'key'       => 'B10FDCDCEC088467D0069F423C6E15887B190BD2',
 #  }
 # - Stackdriver APT repository
 #
@@ -42,7 +42,7 @@ class stackdriver::install::debian(
   $ensure = 'present',
 
   $aptkey = {
-    'key'         => '7B190BD2',
+    'key'         => 'B10FDCDCEC088467D0069F423C6E15887B190BD2',
     'key_source'  => 'https://app.stackdriver.com/RPM-GPG-KEY-stackdriver',
   },
 
@@ -50,7 +50,7 @@ class stackdriver::install::debian(
     'location'  => 'http://repo.stackdriver.com/apt',
     'release'   => $::lsbdistcodename,
     'repos'     => 'main',
-    'key'       => '7B190BD2',
+    'key'       => 'B10FDCDCEC088467D0069F423C6E15887B190BD2',
   },
 
 ) inherits stackdriver {
