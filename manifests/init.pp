@@ -30,7 +30,7 @@ class stackdriver (
   $service_ensure = 'running',
   $service_enable = 'true',
 
-  $svcs = $::osfamily ? {
+  $svc = $::osfamily ? {
     'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
     'Debian'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
     default   => undef,
