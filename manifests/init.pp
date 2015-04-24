@@ -31,16 +31,15 @@ class stackdriver (
   $service_enable = 'true',
 
   $svc = $::osfamily ? {
-    'windows' => 'StackdriverAgent',
-    'RedHat'  => 'stackdriver-agent',
-    'Debian'  => 'stackdriver-agent',
+    'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
+    'Debian'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
     default   => undef,
   },
 
 ) {
 
   validate_string ( $apikey )
-  validate_string ( $svc    )
+  validate_array  ( $svc    )
 
   # Runtime class definitions
   $iclass = "${name}::install::${::osfamily}"
