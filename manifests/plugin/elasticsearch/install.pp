@@ -6,10 +6,10 @@
 #
 class stackdriver::plugin::elasticsearch::install inherits stackdriver::plugin::elasticsearch {
 
-  if ! $pkg {
+  if ! $stackdriver::plugin::elasticsearch::pkg {
     fail("No package defined for OS ${::operatingsystem}")
   }
 
-  ensure_packages([$pkg])
+  ensure_packages([$stackdriver::plugin::elasticsearch::pkg])
 
 }

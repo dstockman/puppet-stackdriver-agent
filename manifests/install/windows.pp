@@ -37,10 +37,10 @@ class stackdriver::install::windows(
 
   if ! defined(File['C:/tmp']) {
     file { 'C:/tmp':
-      ensure  => 'directory',
-      mode    => '0775',
-      owner   => 'SYSTEM',
-      group   => 'Administrators',
+      ensure => 'directory',
+      mode   => '0775',
+      owner  => 'SYSTEM',
+      group  => 'Administrators',
     }
   }
 
@@ -55,13 +55,13 @@ class stackdriver::install::windows(
 
   exec {
     "${name}-installer":
-      provider    => 'powershell',
-      logoutput   => true,
-      timeout     => 600,
+      provider  => 'powershell',
+      logoutput => true,
+      timeout   => 600,
       # NOTE: /S for silent install (API registry key will be empty)
-      command     => "C:${installer} /S; Start-Sleep -s 30",
-      unless      => "if(!(Test-Path \'${uninstallkey}\')) { exit 1 } else { exit 0 }",
-      require     => File["C:${installer}"],
+      command   => "C:${installer} /S; Start-Sleep -s 30",
+      unless    => "if(!(Test-Path \'${uninstallkey}\')) { exit 1 } else { exit 0 }",
+      require   => File["C:${installer}"],
   }
 
 }
