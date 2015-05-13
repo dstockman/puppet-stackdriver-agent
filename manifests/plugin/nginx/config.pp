@@ -9,9 +9,9 @@ class stackdriver::plugin::nginx::config(
 
 ) inherits stackdriver::plugin::nginx {
 
-  file { $config:
+  file { $stackdriver::plugin::nginxconfig:
     ensure  => file,
-    content => template("stackdriver/${::kernel}/${config}.erb"),
+    content => template("stackdriver/${::kernel}/${stackdriver::plugin::nginxconfig}.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0440', # secure

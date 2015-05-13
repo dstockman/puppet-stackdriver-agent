@@ -6,9 +6,9 @@
 #
 class stackdriver::plugin::elasticsearch::config inherits stackdriver::plugin::elasticsearch {
 
-  file { $config:
+  file { $stackdriver::plugin::elasticsearch::config:
     ensure  => file,
-    content => template("stackdriver/${::kernel}/${config}.erb"),
+    content => template("stackdriver/${::kernel}/${stackdriver::plugin::elasticsearch::config}.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0444',

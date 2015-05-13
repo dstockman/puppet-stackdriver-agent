@@ -6,10 +6,10 @@
 #
 class stackdriver::plugin::redis::install inherits stackdriver::plugin::redis {
 
-  if ! $pkg {
+  if ! $stackdriver::plugin::redis::pkg {
     fail("No package defined for OS ${::operatingsystem}")
   }
 
-  ensure_packages([$pkg])
+  ensure_packages([$stackdriver::plugin::redis::pkg])
 
 }

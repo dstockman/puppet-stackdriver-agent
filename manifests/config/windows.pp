@@ -27,8 +27,8 @@ class stackdriver::config::windows(
       key     => $apiregkey,
       value   => 'ApiKey',
       type    => 'string',
-      data    => $apikey,
-      notify  => Service[$svc];
+      data    => $stackdriver::apikey,
+      notify  => Service[$stackdriver::svc];
   }
 
 }

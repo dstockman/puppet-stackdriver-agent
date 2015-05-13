@@ -20,14 +20,6 @@
 # - Default - 9991
 # - Tomcat JMX Port
 #
-# [*path*]
-# - Default - /mnt/jmxtrans
-# - jmxtrans location
-#
-# [*sysconfig*]
-# - Default - none
-# - Hash to create /etc/sysconfig/jmxtrans override variables
-#
 # [*apikey*]
 # - Default - retrieve from hiera stackdriver::apikey
 # - Stackdriver API Key
@@ -52,9 +44,6 @@ class stackdriver::plugin::tomcat(
   $ensure    = 'present',
   $host      = 'localhost',
   $port      = '9991',
-  $path      = '/mnt/jmxtrans',
-  $sysconfig = {},
-  $apikey    = hiera('stackdriver::apikey'),
 ) {
 
   Class['stackdriver'] -> Class[$name]
@@ -62,14 +51,6 @@ class stackdriver::plugin::tomcat(
   validate_string ( $ensure )
   validate_string ( $host   )
   validate_string ( $port   )
-  validate_string ( $path   )
-  if $sysconfig { validate_hash ( $sysconfig ) }
-
-  if $ensure == 'present' {
-    $service_ensure = 'running'
-  } else {
-    $service_ensure = 'stopped'
-  }
 
   contain "${name}::config"
 

@@ -6,9 +6,9 @@
 #
 class stackdriver::plugin::redis::config inherits stackdriver::plugin::redis {
 
-  file { $config:
+  file { $stackdriver::plugin::redis::config:
     ensure  => file,
-    content => template("stackdriver/${::kernel}/${config}.erb"),
+    content => template("stackdriver/${::kernel}/${stackdriver::plugin::redis::config}.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0444',

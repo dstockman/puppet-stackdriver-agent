@@ -28,7 +28,7 @@ class stackdriver (
   $apikey = undef,
   $ensure = 'present',
   $service_ensure = 'running',
-  $service_enable = 'true',
+  $service_enable = true,
 
   $svc = $::osfamily ? {
     'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
@@ -61,11 +61,11 @@ class stackdriver (
 
 
   # Service
-  class { "::${sclass}": 
+  class { "::${sclass}":
     service_ensure => $service_ensure,
     service_enable => $service_enable,
-    require => Class[$cclass],
-   }
+    require        => Class[$cclass],
+  }
   include $sclass
 
 
