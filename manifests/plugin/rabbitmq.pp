@@ -50,22 +50,19 @@
 class stackdriver::plugin::rabbitmq(
 
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/rabbitmq.conf',
-  $vhost    = '%2F',
+  $host     = 'localhost',
+  $vhost    = '/',
   $port     = '15672',
   $queue    = undef,
   $user     = 'guest',
   $password = 'guest',
+  $queues   = [ { 'host' => $host, 'vhost' => $vhost, 'port' => $port, 'name' => $queue, 'user' => $user, 'password' => $password, }, ],
 
 ) {
 
   Class['stackdriver'] -> Class[$name]
 
-  validate_string ( $config   )
-  validate_string ( $vhost    )
-  validate_string ( $port     )
-  validate_string ( $user     )
-  validate_string ( $password )
-  validate_string ( $queue    )
+  validate_array  ( $queues   )
 
   contain "${name}::config"
 
