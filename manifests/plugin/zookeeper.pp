@@ -38,8 +38,7 @@
 class stackdriver::plugin::zookeeper(
 
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/zookeeper.conf',
-
-  $host 		=  'localhost',
+  $host     =  'localhost',
   $port     =  '2181'
 
 ) {
