@@ -1,0 +1,27 @@
+{
+  "name": "puppet-stackdriver-agent",
+  "version": "1.2.0",
+  "author": "denise stockman",
+  "license": "pfft",
+  "summary": "Stackdriver agent",
+  "source": "https://github.com/dstockman/puppet-stackdriver-agent",
+  "project_page": "https://github.com/dstockman/puppet-stackdriver-agent",
+  "issues_url": "https://github.com/dstockman/puppet-stackdriver-agent/issues",
+  "tags": ["stackdriver", "monitoring"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"RedHat",
+    "operatingsystemrelease":[ "6.0" ]
+    },
+    {
+    "operatingsystem": "AWS Linux",
+    "operatingsystemrelease": [ "2015.03" ]
+    }
+   ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.0.0" },
+    { "name": "puppetlabs/apt", "version_requirement": ">= 1.4.0" },
+    { "name": "puppetlabs/registry", "version_requirement": ">= 1.0.0" },
+    { "name": "joshcooper/powershell", "version_requirement": ">= 0.0.6" },
+  ]
+}
