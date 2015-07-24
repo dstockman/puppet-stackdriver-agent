@@ -207,15 +207,24 @@ stackdriver::plugin::elasticsearch::port:      '9200'
 
 ### RabbitMQ
 
-Configures the RabbitMQ plugin on the local host running on port 5672.
-All settings are required.
+Configures the RabbitMQ plugin on the local host running on port 15672.
+The defaults for all settings are listed below.  The queue names must
+be unique and defaults to a null string ('') if not specified.
 
 ```yaml
-stackdriver::plugin::rabbitmq::vhost:     '%2F'
-stackdriver::plugin::rabbitmq::port:      '15672'
-stackdriver::plugin::rabbitmq::queue:     '(Queue Name)'
-stackdriver::plugin::rabbitmq::user:      'guest'
-stackdriver::plugin::rabbitmq::password:  'guest'
+stackdriver::plugin::rabbitmq::queues:
+  - vhost:     '/'
+    host:      'localhost'
+    port:      '15672'
+    name:      '(First Queue Name)'
+    user:      'guest'
+    password:  'guest'
+  - vhost:     '/'
+    host:      'localhost'
+    port:      '15672'
+    name:      '(Second Queue Name)'
+    user:      'guest'
+    password:  'guest'
 ```
 
 
