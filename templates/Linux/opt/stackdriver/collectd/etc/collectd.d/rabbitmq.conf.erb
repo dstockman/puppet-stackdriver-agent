@@ -29,7 +29,7 @@ LoadPlugin "curl_json"
     <URL "http://<%= q['host'] %>:<%= q['port'] %>/api/queues/<%= q['vhost'] =~ /%/ ? q['vhost'] : ERB::Util.url_encode(q['vhost']) %>/<%= q['name'] =~ /%/ ? q['name'] : ERB::Util.url_encode(q['name']) %>">
         Instance "<%= q['name'] %>"
         User "<%= q['user'] %>"
-        Password "<%= q['password'].gsub(/\\/){'\\'}.gsub(/\"/){'\"'} -%>"
+        Password "<%= Regexp::quote(q['password']) -%>"
 
         <Key "messages">
             Type "gauge"
