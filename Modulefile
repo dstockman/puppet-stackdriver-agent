@@ -1,5 +1,5 @@
 name 'dstockman-stackdriver'
-version '1.2.0'
+version '1.3.0'
 source 'git@github.com:dstockman/puppet-stackdriver-agent.git'
 author 'denise stockman'
 description 'Puppet module to install stackdriver'
