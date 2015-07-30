@@ -1,0 +1,6 @@
+LoadPlugin exec
+<Plugin exec>
+<% execs.each do |e| -%>
+  Exec "<%= e.user %>:<%= e.group %>" "<%= e.command %>"
+<% end -%>
+</Plugin>
