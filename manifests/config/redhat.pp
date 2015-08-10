@@ -15,11 +15,9 @@
 # - Stackdriver configuration file
 #
 class stackdriver::config::redhat(
-
+  $apikey,
   $sysconfig = '/etc/sysconfig/stackdriver',
-
-) inherits stackdriver {
-
+) {
   validate_string ( $sysconfig )
 
   file { $sysconfig:
@@ -28,8 +26,6 @@ class stackdriver::config::redhat(
     group   => 'root',
     mode    => '0440',  # secure API key
     content => template("stackdriver/${::kernel}/${sysconfig}.erb"),
-    notify  => Service[$svc],
   }
-
 }
 

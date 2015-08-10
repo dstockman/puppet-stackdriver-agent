@@ -45,27 +45,23 @@
 #   - 'redis'
 #
 class stackdriver::plugin::redis(
-
   $pkg      = 'hiredis-devel',
-
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/redis.conf',
-
   $host     = 'localhost',
   $port     = 6379,
   $timeout  = 2000,
 
 ) {
 
-  Class['stackdriver'] -> Class[$name]
-
   validate_string ( $pkg    )
   validate_string ( $config )
   validate_string ( $host   )
 
   contain "${name}::install"
-
-  class { "::${name}::config": require => Class["::${name}::install"] }
   contain "${name}::config"
 
+  Class['::stackdriver::config'] ->
+  Class["::${name}::install"] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 }
-

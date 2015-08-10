@@ -44,27 +44,23 @@
 #   - 'mongo'
 #
 class stackdriver::plugin::mongo(
-
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/mongo.conf',
-
   $host     = 'localhost',
   $port     = 27017,
   $user     = 'stackdriver',
   $password = 'ahzae8aiLiKoe',
-
 ) {
-
-  Class['stackdriver'] -> Class[$name]
 
   validate_string ( $config   )
   validate_string ( $host     )
   validate_string ( $user     )
   validate_string ( $password )
 
-  #contain "${name}::install"
-
-  #class { "::${name}::config": require => Class["::${name}::install"] }
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 

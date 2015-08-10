@@ -57,8 +57,6 @@ class stackdriver::plugin::tomcat(
   $apikey    = hiera('stackdriver::apikey'),
 ) {
 
-  Class['stackdriver'] -> Class[$name]
-
   validate_string ( $ensure )
   validate_string ( $host   )
   validate_string ( $port   )
@@ -72,5 +70,9 @@ class stackdriver::plugin::tomcat(
   }
 
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }

@@ -23,57 +23,35 @@
 #    apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOROUND"
 #  }
 #
-class stackdriver (
-
-  $apikey = undef,
-  $ensure = 'present',
+class stackdriver(
+  $apikey         = undef,
+  $ensure         = 'present',
   $service_ensure = 'running',
   $service_enable = true,
-
+  $plugins        = [],
   $svc = $::osfamily ? {
     'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
     'Debian'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
     default   => undef,
   },
-
+  $iclass = "::stackdriver::install::${::osfamily}",
+  $cclass = "::stackdriver::config::${::osfamily}",
 ) {
-
   validate_string ( $apikey )
   validate_array  ( $svc    )
 
-  # Runtime class definitions
-  $iclass = "${name}::install::${::osfamily}"
-  $cclass = "${name}::config::${::osfamily}"
-  $sclass = "${name}::service"
+  contain stackdriver::install
+  contain stackdriver::config
+  contain stackdriver::service
 
-
-  # OS Family specific installation
-  class { "::${iclass}":
-    ensure => $ensure,
-    notify => Class[$sclass],
-  }
-  contain $iclass
-
-
-  # OS Family specific configuration
-  class { "::${cclass}": require => Class[$iclass]; }
-  contain $cclass
-
-
-  # Service
-  class { "::${sclass}":
-    service_ensure => $service_ensure,
-    service_enable => $service_enable,
-    require        => Class[$cclass],
-  }
-  include $sclass
-
-  # Array of Plugins to load (optional)
-  $plugins = hiera_array("${name}::plugins", [])
+  Class['::stackdriver::install'] -> Class['::stackdriver::config']
+  Class['::stackdriver::install'] ~> Class['::stackdriver::service'] 
+  Class['::stackdriver::config'] ~> Class['::stackdriver::service'] 
 
   if ! empty($plugins) {
     stackdriver::plugin { $plugins: }
   }
+
 
 }
 

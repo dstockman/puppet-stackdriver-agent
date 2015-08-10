@@ -44,12 +44,14 @@ class stackdriver::plugin::memcached(
 
 ) {
 
-  Class['stackdriver'] -> Class[$name]
-
   validate_string ( $config )
   validate_string ( $host   )
 
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 
