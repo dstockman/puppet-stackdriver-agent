@@ -15,6 +15,7 @@
 # - Stackdriver configuration file
 #
 class stackdriver::config::debian(
+  $apikey, 
   $sysconfig = '/etc/default/stackdriver-agent',
 ) {
 
