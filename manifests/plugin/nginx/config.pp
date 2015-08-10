@@ -5,8 +5,6 @@
 # Configures Nginx Agent Plugin for Stackdriver Agent
 #
 class stackdriver::plugin::nginx::config(
-
-
 ) inherits stackdriver::plugin::nginx {
 
   file { $config:
@@ -15,7 +13,6 @@ class stackdriver::plugin::nginx::config(
     owner   => 'root',
     group   => 'root',
     mode    => '0440', # secure
-    notify  => Service[$::stackdriver::svc],
   }
 
 }

@@ -31,7 +31,7 @@
 #
 class stackdriver::install::redhat(
 
-  $pkg    = [ 'stackdriver-agent', 'stackdriver-extractor' ],
+  $pkg    = [ 'stackdriver-extractor','stackdriver-agent'],
   $ensure = 'present',
 
   $repo = {

@@ -5,8 +5,6 @@
 # Configures RabbitMQ Agent Plugin for Stackdriver Agent
 #
 class stackdriver::plugin::rabbitmq::config(
-
-
 ) inherits stackdriver::plugin::rabbitmq {
 
   file { $config:

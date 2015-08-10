@@ -64,8 +64,6 @@ class stackdriver::plugin::nginx(
 
 ) {
 
-  Class['stackdriver'] -> Class[$name]
-
   validate_absolute_path  ( $config )
   validate_string         ( $url    )
 
@@ -75,10 +73,11 @@ class stackdriver::plugin::nginx(
   if $verifyhost  != undef { validate_bool          ( $verifyhost ) }
   if $cacert      != undef { validate_absolute_path ( $cacert     ) }
 
-  #contain "${name}::install"
-
-  #class { "::${name}::config": require => Class["::${name}::install"] }
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 

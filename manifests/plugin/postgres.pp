@@ -40,26 +40,22 @@
 #   - 'postgres'
 #
 class stackdriver::plugin::postgres(
-
   $config   =  '/opt/stackdriver/collectd/etc/collectd.d/postgres.conf',
-
   $dbname   = undef,  # REQUIRED Param
   $user     = 'stackdriver',
   $password = 'xoiboov9Pai5e',
-
 ) {
-
-  Class['stackdriver'] -> Class[$name]
 
   validate_string ( $config   )
   validate_string ( $dbname   )
   validate_string ( $user     )
   validate_string ( $password )
 
-  #contain "${name}::install"
-
-  #class { "::${name}::config": require => Class["::${name}::install"] }
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 

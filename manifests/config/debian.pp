@@ -15,10 +15,9 @@
 # - Stackdriver configuration file
 #
 class stackdriver::config::debian(
-
+  $apikey, 
   $sysconfig = '/etc/default/stackdriver-agent',
-
-) inherits stackdriver {
+) {
 
   validate_string ( $sysconfig )
 
@@ -28,7 +27,6 @@ class stackdriver::config::debian(
     group   => 'root',
     mode    => '0440',  # secure API key
     content => template("stackdriver/${::kernel}/${sysconfig}.erb"),
-    notify  => Service[$svc],
   }
 
 }

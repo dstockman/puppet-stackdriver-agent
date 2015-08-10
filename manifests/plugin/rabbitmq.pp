@@ -60,7 +60,6 @@ class stackdriver::plugin::rabbitmq(
 
 ) {
 
-  Class['stackdriver'] -> Class[$name]
 
   validate_array  ( $queues   )
 
@@ -70,6 +69,10 @@ class stackdriver::plugin::rabbitmq(
   ensure_resource('package', 'yajl', {
     'ensure'  => 'present',
   })
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 

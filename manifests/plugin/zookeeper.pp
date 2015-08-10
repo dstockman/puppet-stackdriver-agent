@@ -43,13 +43,15 @@ class stackdriver::plugin::zookeeper(
 
 ) {
 
-  Class['stackdriver'] -> Class[$name]
-
   validate_string ( $config )
   validate_string ( $host   )
   validate_string ( $port   )
 
   contain "${name}::config"
+
+  Class['::stackdriver::config'] ->
+  Class["::${name}::config"] ~>
+  Class['::stackdriver::service']
 
 }
 
