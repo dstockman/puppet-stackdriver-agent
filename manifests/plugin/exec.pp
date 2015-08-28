@@ -11,30 +11,9 @@
 # - Default - /opt/stackdriver/collectd/etc/collectd.d/exec.conf
 # - Plugin configuration file
 #
-# [*usehost*]
-# - Default - False
-# - Send hostname along with metric
-#
-# [*interval*]
-# - Default - 60
-# - Exec frequency
-#
-# [*metric*]
-# - Default - None
-# - Metric (StackDriver namespace) to store datapoint to.  REQUIRED.
-#
-# [*type*]
-# - Default - 'count'
-# - Metric type (from /opt/stackdriver/collectd/share/collectd/types.db)
-#
-# [*command*]
-# - Default - None
-# - Command to Exec to generate the *metric* datapoint.  REQUIRED.
-#
-# [*tsr*]
-# - Default - False
-# - Instead of running once and emitting a single metric datapoint, enter a
-#   loop where *command* is run every *interval* to emit a *metric* datapoint
+# [*execs*]
+# - Default - []
+# - Array of "Exec 'user:group' '/path/to/commdand' 'arg0' 'arg1' ..." lines - REQUIRED
 #
 # === Usage
 # ---
@@ -55,24 +34,14 @@
 class stackdriver::plugin::exec(
 
   $config   = '/opt/stackdriver/collectd/etc/collectd.d/exec.conf',
-  $usehost  = false,
-  $interval = 60,
-  $metric   = undef,
-  $type     = 'count',
-  $command  = undef,
-  $tsr      = false,
+  $execs    = [],
 
 ) {
 
   Class['stackdriver'] -> Class[$name]
 
   validate_absolute_path  ( $config   )
-  validate_string         ( $bool     )
-  validate_integer        ( $interval )
-  validate_string         ( $metric   )
-  validate_string         ( $type     )
-  validate_string         ( $command  )
-  validate_bool           ( $tsr      )
+  validate_array          ( $execs    )
 
   contain "${name}::config"
 
