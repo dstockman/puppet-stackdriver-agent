@@ -44,7 +44,7 @@
 #  Enable Exec plugin via Hiera:
 #
 #  stackdriver::plugins:
-#   - 'exec'
+#   - exec
 #
 # ==== Puppet Code
 #
@@ -54,9 +54,9 @@
 #
 class stackdriver::plugin::exec(
 
-  $config   =  '/opt/stackdriver/collectd/etc/collectd.d/exec.conf',
-  $usehost  =  false,
-  $interval =  60,
+  $config   = '/opt/stackdriver/collectd/etc/collectd.d/exec.conf',
+  $usehost  = false,
+  $interval = 60,
   $metric   = undef,
   $type     = 'count',
   $command  = undef,
