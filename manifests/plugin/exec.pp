@@ -13,7 +13,7 @@
 #
 # [*execs*]
 # - Default - []
-# - Array of "Exec 'user:group' '/path/to/commdand' 'arg0' 'arg1' ..." lines - REQUIRED
+# - Array of "Exec 'user:group' '/path/to/commdand' 'arg0' 'arg1' ..." lines
 #
 # === Usage
 # ---
@@ -22,8 +22,10 @@
 #
 #  Enable Exec plugin via Hiera:
 #
-#  stackdriver::plugins:
+# stackdriver::plugins:
 #   - exec
+# stackdriver::plugin::exec::execs:
+#   - Exec "nobody:nobody" "/opt/stackdriver/collectd/bin/autometric" "-v" "-m" "tmp.file.count" "-H" "-c" "/bin/ls /tmp | /usr/bin/wc -l"
 #
 # ==== Puppet Code
 #
