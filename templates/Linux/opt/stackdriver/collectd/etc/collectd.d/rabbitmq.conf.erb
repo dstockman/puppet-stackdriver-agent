@@ -4,7 +4,7 @@ LoadPlugin target_set
     # Each queue needs a separate "Rule" section
 
 <% queue_names = @queues.map{ |q| q.has_key?('name') ? q['name'] : @queue }.uniq.each do |name| -%>
-<%     next if name.nil? -%>
+<%     next if name.to_s.strip.length == 0 -%>
 
     <Rule>
         <Match regex>
@@ -28,7 +28,7 @@ LoadPlugin "curl_json"
 
 <% @queues.each do |queue| -%>
 <%     q = { 'host' => @host, 'port' => @port, 'vhost' => @vhost, 'name' => @queue, 'user' => @user, 'password' => @password }.merge(queue) -%>
-<%     next if q['name'].nil? -%>
+<%     next if q['name'].to_s.strip.length == 0 -%>
     <URL "http://<%= q['host'] %>:<%= q['port'] %>/api/queues/<%= q['vhost'] =~ /%/ ? q['vhost'] : ERB::Util.url_encode(q['vhost']) %>/<%= q['name'] =~ /%/ ? q['name'] : ERB::Util.url_encode(q['name']) %>">
         Instance "<%= q['name'] %>"
         User "<%= q['user'] %>"
