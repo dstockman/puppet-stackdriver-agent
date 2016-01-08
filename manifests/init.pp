@@ -15,6 +15,10 @@
 # - Default - Depends on $::osfamily
 # - Stackdriver Agent service name
 #
+# [*managerepo*]
+# - Default - true
+# - Should we add the upstream repository to the apt/Yum sources list?
+#
 # == Examples:
 #
 #  Basic agent configuration
@@ -27,6 +31,7 @@ class stackdriver (
 
   $apikey = undef,
   $ensure = 'present',
+  $managerepo = true,
   $service_ensure = 'running',
   $service_enable = true,
 
