@@ -42,8 +42,8 @@ class stackdriver (
   validate_array  ( $svc    )
 
   # Runtime class definitions
-  $iclass = "${name}::install::${::osfamily}"
-  $cclass = "${name}::config::${::osfamily}"
+  $iclass = downcase("${name}::install::${::osfamily}")
+  $cclass = downcase("${name}::config::${::osfamily}")
   $sclass = "${name}::service"
 
 
