@@ -36,14 +36,13 @@
 class stackdriver::plugin::exec(
 
   $config   = '/opt/stackdriver/collectd/etc/collectd.d/exec.conf',
-  $execs    = [],
 
 ) {
 
   Class['stackdriver'] -> Class[$name]
 
   validate_absolute_path  ( $config   )
-  validate_array          ( $execs    )
+  $execs = hiera_array("${name}::execs", [])
 
   contain "${name}::config"
 
