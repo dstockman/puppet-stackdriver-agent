@@ -60,17 +60,20 @@ class stackdriver::install::debian(
   validate_hash   ( $aptkey     )
   validate_hash   ( $aptsource  )
 
-  # Setup repo
-  ensure_resource('apt::key', 'stackdriver', $aptkey)
+  # Setup repo unless configure not to.
+  if $managerepo {
+    Apt::Source {
+      require => Apt::Key['stackdriver'],
+      before  => Package[$pkg],
+    }
 
-  Apt::Source { require => Apt::Key['stackdriver'], }
-
-  ensure_resource('apt::source', 'stackdriver', $aptsource)
+    ensure_resource('apt::key', 'stackdriver', $aptkey)
+    ensure_resource('apt::source', 'stackdriver', $aptsource)
+  }
 
   # Install package
   ensure_resource('package', $pkg, {
     'ensure'  => $ensure,
-    'require' => Apt::Source['stackdriver'],
   })
 
 }
