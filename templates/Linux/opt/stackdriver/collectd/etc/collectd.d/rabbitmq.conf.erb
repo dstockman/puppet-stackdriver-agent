@@ -3,7 +3,9 @@ LoadPlugin target_set
 <Chain "PreCache">
     # Each queue needs a separate "Rule" section
 
-<% queue_names = queues.map{ |q| q.has_key?('name') ? q['name'] : '' }.uniq.each do |name| -%>
+<% queue_names = @queues.map{ |q| q.has_key?('name') ? q['name'] : @queue }.uniq.each do |name| -%>
+<%     next if name.to_s.strip.length == 0 -%>
+
     <Rule>
         <Match regex>
             Plugin "^curl_json$"
@@ -24,8 +26,9 @@ LoadPlugin "curl_json"
     # http://localhost:15672/api/queues/vhost/queue_name
     # Each URL section must match one of the Rules sections
 
-<% queues.each do |queue| -%>
-<%     q = { 'host' => 'localhost', 'port' => '15672', 'vhost' => '/', 'name' => '', 'user' => 'guest', 'password' => 'guest' }.merge(queue) -%>
+<% @queues.each do |queue| -%>
+<%     q = { 'host' => @host, 'port' => @port, 'vhost' => @vhost, 'name' => @queue, 'user' => @user, 'password' => @password }.merge(queue) -%>
+<%     next if q['name'].to_s.strip.length == 0 -%>
     <URL "http://<%= q['host'] %>:<%= q['port'] %>/api/queues/<%= q['vhost'] =~ /%/ ? q['vhost'] : ERB::Util.url_encode(q['vhost']) %>/<%= q['name'] =~ /%/ ? q['name'] : ERB::Util.url_encode(q['name']) %>">
         Instance "<%= q['name'] %>"
         User "<%= q['user'] %>"

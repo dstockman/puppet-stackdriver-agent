@@ -131,6 +131,19 @@ stackdriver::plugin::redis::port:       '6379'
 stackdriver::plugin::redis::timeout:    '2000'
 ```
 
+### Exec
+
+Configures the collectd Exec plugin on the local host.  For details
+on the format of this line, and limitations of the Exec plugin, see
+https://collectd.org/wiki/index.php/Plugin:Exec
+All settings are optional.
+
+```yaml
+stackdriver::plugin::exec::config:      '/opt/stackdriver/collectd/etc/collectd.d/exec.conf'
+stackdriver::plugin::exec::execs:
+  - Exec "nobody:nobody" "/opt/stackdriver/collectd/bin/autometric" "-v" "-m" "tmp.file.count" "-H" "-c" "/bin/ls /tmp | /usr/bin/wc -l"
+```
+
 ### Memcached
 
 Configures the memcahed plugin on the local host running on port 11211.

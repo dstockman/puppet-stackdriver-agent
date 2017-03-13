@@ -56,7 +56,7 @@ class stackdriver::plugin::rabbitmq(
   $queue    = undef,
   $user     = 'guest',
   $password = 'guest',
-  $queues   = [ { 'host' => $host, 'vhost' => $vhost, 'port' => $port, 'name' => $queue, 'user' => $user, 'password' => $password, }, ],
+  $queues   = [{},],
 
 ) {
 
