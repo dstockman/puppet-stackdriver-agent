@@ -37,7 +37,7 @@ The stackdriver class includes the client:
 include stackdriver
 ```
 
-You must specify your Stackdriver API key:
+You must specify your Stackdriver API key if not using GCM detection:
 
 * Using Hiera (recommended)
 
@@ -50,6 +50,14 @@ stackdriver::apikey: 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG'
 ```puppet
 class { 'stackdriver':
     apikey => 'OMGBECKYLOOKATHERBUTTITSJUSTSOBIG',
+}
+```
+
+Using DETECT_GCM instead of API key:
+
+```puppet
+class { 'stackdriver':
+    gcm => true
 }
 ```
 

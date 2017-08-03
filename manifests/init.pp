@@ -8,7 +8,7 @@
 # ---
 #
 # [*apikey*]
-# - Default - NONE (REQUIRED)
+# - Default - NONE (REQUIRED unless using gcm)
 # - Stackdriver API key
 #
 # [*svc*]
@@ -19,12 +19,21 @@
 # - Default - true
 # - Should we add the upstream repository to the apt/Yum sources list?
 #
+# [*gcm*]
+# - Default - false
+# - Should we enable DETECT_GCM instead of using an API key?
 # == Examples:
 #
 #  Basic agent configuration
 #
 #  class { 'stackdriver':
 #    apikey => "OMGBECKYLOOKATHERBUTTITSJUSTSOROUND"
+#  }
+#
+#  GCM agent configuration 
+#
+#  class { 'stackdriver':
+#    gcm => true
 #  }
 #
 class stackdriver (
@@ -34,13 +43,29 @@ class stackdriver (
   $managerepo = true,
   $service_ensure = 'running',
   $service_enable = true,
+  $gcm = false,
 
-  $svc = $::osfamily ? {
-    'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
-    'Debian'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
-    default   => undef,
+  $svc = $gcm ? {
+    true    => $::osfamily ? {
+      'RedHat'  => [ 'stackdriver-agent' ],
+      'Debian'  => [ 'stackdriver-agent' ],
+      default   => undef,
+    },
+    default => $::osfamily ? {
+      'RedHat'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
+      'Debian'  => [ 'stackdriver-agent', 'stackdriver-extractor' ],
+      default   => undef,
+    },
   },
-
+  
+  $svc_disable = $gcm ? {
+    true    => $::osfamily ? {
+      'RedHat'  => [ 'stackdriver-extractor' ],
+      'Debian'  => [ 'stackdriver-extractor' ],
+      default   => []
+    },
+    default => []
+  },
 ) {
 
   validate_string ( $apikey )
