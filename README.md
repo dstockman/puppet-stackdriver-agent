@@ -53,7 +53,7 @@ class { 'stackdriver':
 }
 ```
 
-Using DETECT_GCM instead of API key:
+* Using DETECT_GCM instead of API key:
 
 ```puppet
 class { 'stackdriver':
