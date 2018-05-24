@@ -128,6 +128,36 @@ Plugin defaults are shown using the recommended Hiera format.
 Values enclosed in <> do not have defaults and are required.
 Values enclosed in () have an undef default and are optional.
 
+### Custom Exec
+
+This is t be used in conjunction with the `exec` plugin. 
+The script that is run must output a PUTVAL in the following format:
+Example:
+```
+# Example:
+#   PUTVAL "ge-lxsjbsapi01/check_puppet-get_last_run/gauge-last_run_seconds" interval=60 1527190805:761
+#           -------------- ------------ ------------ ----- ----------------              ---------- ---
+#           \Hostname      \Plugin      \PluginType  \Type \TypeInstance                 \timestamp \Value
+#
+```
+
+```yaml
+stackdriver::plugin::exec_custom::custom_rules:
+  - rule:            'get_puppet_last_run_seconds'
+    plugin:          'check_puppet'
+    plugin_instance: 'get_last_run'
+    type:            'gauge'
+    type_instance:   'last_run_seconds'
+    sd_metric_type:  'custom.googleapis.com/puppet/last_run'
+  - rule:            'get_puppet_events_total'
+    plugin:          'check_puppet'
+    plugin_instance: 'get_last_run'
+    type:            'gauge'
+    type_instance:   'last_run_events_total'
+    sd_metric_type:  'custom.googleapis.com/puppet/events_total'
+```
+
+
 ### Redis
 
 Configures the redis plugin on the local host running on port 6379.
