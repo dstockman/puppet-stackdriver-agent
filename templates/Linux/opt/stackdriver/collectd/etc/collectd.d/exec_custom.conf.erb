@@ -1,5 +1,4 @@
-# exec-custom.conf.erb
-# Google Documentation including examples: https://cloud.google.com/monitoring/agent/custom-metrics-agent
+# exec_custom.conf.erb
 
 LoadPlugin match_regex
 LoadPlugin target_set
@@ -15,24 +14,18 @@ PreCacheChain "PreCache"
   <%     q = { 'rule' => @rule, 'plugin' => @plugin, 'plugin_instance' => @plugin_instance, 'type' => @type, 'type_instance' => @type_instance, 'sd_metric_type' => @sd_metric_type }.merge(custom_rule) -%>
 
   <Rule "<%= q['rule'] %>">
-
     <Match "regex">
-
       Plugin "^<%= q['plugin'] %>$"
-      PluginInstance "^<% q['plugin_instance'] %>$"
+      PluginInstance "^<%= q['plugin_instance'] %>$"
       Type "^<%= q['type'] %>$" 
       TypeInstance "^<%= q['type_instance'] %>$"
-
     </Match>
-
-    #<Target "set">
-    #  # This is were we send this metric: SD Metric is actually "custom/puppet/last_run" in the SD Web GUI
-    #  MetaData "stackdriver_metric_type" "custom.googleapis.com/puppet/last_run"
-    #  MetaData "stackdriver_metric_type" "<%= q['sd_metric_type'] %>"
-    #  # Allow setting labels here! 
-    #  #MetaData "label:metric" "%{type_instance}"
-    #</Target>
-    </Rule>
+    <Target "set">
+      MetaData "stackdriver_metric_type" "<%= q['sd_metric_type'] %>"
+      # Allow setting labels here! 
+      #MetaData "label:metric" "%{type_instance}"
+     </Target>
+  </Rule>
 
   <% end -%>
 
