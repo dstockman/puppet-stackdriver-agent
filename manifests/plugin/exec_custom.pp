@@ -11,10 +11,30 @@
 # - Default - /opt/stackdriver/collectd/etc/collectd.d/exec_custom.conf
 # - Plugin configuration file
 #
-# [*vhost*]
-# - Default - %2F
-# - vhost needs to be url encoded, default vhost is "/"
+# [*rule*]
+# - Default - undef 
+# - Rule name, must be unique. 
 #
+# [*plugin*]
+# - Default - undef 
+# - Plugin name, see KEY above for proper output from EXEC script mapping. 
+#
+# [*plugin_instance*]
+# - Default - undef 
+# - Plugin Instance name, see KEY above for proper output from EXEC script mapping. 
+#
+# [*type*]
+# - Default - guage 
+# - Types.  gauge, delta, or cumulative 
+# - https://cloud.google.com/monitoring/api/v3/metrics-details#metric-kinds
+#
+# [*type_instance*]
+# - Default - undef 
+# - Type Instance name, see KEY above for proper output from EXEC script mapping. 
+#
+# [*sd_metric_type*]
+# - Default - undef 
+# - What custom metric should get this data? Ex: custom.googleapis.com/puppet/last_run_total_events_success  
 #
 # === Usage
 # ---
