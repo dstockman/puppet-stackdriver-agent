@@ -12,22 +12,31 @@ PreCacheChain "PreCache"
 
 <Chain "PreCache">
 
-  <Rule "custom-exec-rule1">
+  <% @custom_rules.each do |custom_rule| -%>
+  <%     q = { 'rule' => @rule, 'plugin' => @plugin, 'plugin_instance' => @plugin_instance, 'type' => @type, 'type_instance' => @type_instance, 'sd_metric_type' => @sd_metric_type }.merge(custom_rule) -%>
+
+  <Rule "<%= q['rule'] %>">
+
     <Match "regex">
-      Plugin "^plugin$"
-      PluginInstance "^plugin_instance$"
-      Type "^gauge$" # Here we should be able to pick more than just gauge
-      TypeInstance "^type_instance$"
+
+      Plugin "^<%= q['plugin'] %>$"
+      PluginInstance "^<% q['plugin_instance'] %>$"
+      Type "^<%= q['type'] %>$" 
+      TypeInstance "^<%= q['type_instance'] %>$"
+
     </Match>
 
     #<Target "set">
     #  # This is were we send this metric: SD Metric is actually "custom/puppet/last_run" in the SD Web GUI
     #  MetaData "stackdriver_metric_type" "custom.googleapis.com/puppet/last_run"
+    #  MetaData "stackdriver_metric_type" "<%= q['sd_metric_type'] %>"
     #  # Allow setting labels here! 
     #  #MetaData "label:metric" "%{type_instance}"
     #</Target>
-  </Rule>
- 
+    </Rule>
+
+  <% end -%>
+
   <Target "write">
     Plugin "write_gcm"
   </Target>
