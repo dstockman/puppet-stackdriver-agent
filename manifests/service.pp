@@ -9,9 +9,14 @@ class stackdriver::service(
   $service_enable = true,
   ) inherits stackdriver {
 
-    service { $svc:
+  service { $svc:
       ensure => $service_ensure,
       enable => $service_enable,
+  }
+
+  service { $svc_disable:
+      ensure => 'stopped',
+      enable => false
   }
 
 }

@@ -35,8 +35,8 @@ class stackdriver::install::redhat(
   $ensure = 'present',
 
   $repo = {
-    'baseurl'   => 'http://repo.stackdriver.com/repo/el6/$basearch/',
-    'gpgkey'    => 'https://www.stackdriver.com/RPM-GPG-KEY-stackdriver',
+    'baseurl'   => 'http://repo.stackdriver.com/repo/el$releasever/$basearch/',
+    'gpgkey'    => 'https://app.stackdriver.com/RPM-GPG-KEY-stackdriver',
     'descr'     => 'stackdriver',
     'enabled'   => 1,
     'gpgcheck'  => 1,

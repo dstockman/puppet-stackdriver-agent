@@ -1,0 +1,36 @@
+# exec_custom.conf.erb
+
+LoadPlugin match_regex
+LoadPlugin target_set
+LoadPlugin target_replace
+LoadPlugin write_gcm
+LoadPlugin write_log
+
+PreCacheChain "PreCache"
+
+<Chain "PreCache">
+
+  <% @custom_rules.each do |custom_rule| -%>
+  <%     q = { 'rule' => @rule, 'plugin' => @plugin, 'plugin_instance' => @plugin_instance, 'type' => @type, 'type_instance' => @type_instance, 'sd_metric_type' => @sd_metric_type }.merge(custom_rule) -%>
+
+  <Rule "<%= q['rule'] %>">
+    <Match "regex">
+      Plugin "^<%= q['plugin'] %>$"
+      PluginInstance "^<%= q['plugin_instance'] %>$"
+      Type "^<%= q['type'] %>$" 
+      TypeInstance "^<%= q['type_instance'] %>$"
+    </Match>
+    <Target "set">
+      MetaData "stackdriver_metric_type" "<%= q['sd_metric_type'] %>"
+      # Allow setting labels here! 
+      #MetaData "label:metric" "%{type_instance}"
+     </Target>
+  </Rule>
+
+  <% end -%>
+
+  <Target "write">
+    Plugin "write_gcm"
+  </Target>
+
+</Chain>
