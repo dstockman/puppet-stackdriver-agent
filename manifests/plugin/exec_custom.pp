@@ -4,6 +4,12 @@
 #
 # Enable Custom Exec Agent Plugin for Stackdriver Agent
 #
+# KEY -- Your EXEC SCRIPT should output something similar to this:
+# Example:
+#   PUTVAL "ge-lxsjbsapi01/check_puppet-get_last_run/gauge-last_run_seconds" interval=60 1527190805:761
+#           -------------- ------------ ------------ ----- ----------------              ---------- ---
+#           \Hostname      \Plugin      \PluginType  \Type \TypeInstance                 \timestamp \Value
+#
 # === Parameters
 # ---
 #
