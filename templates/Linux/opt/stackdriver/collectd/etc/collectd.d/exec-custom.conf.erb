@@ -1,1 +1,35 @@
 # Custom Exec Configuration
+#
+# Google Documentation including examples: https://cloud.google.com/monitoring/agent/custom-metrics-agent
+
+LoadPlugin match_regex
+LoadPlugin target_set
+LoadPlugin target_replace
+LoadPlugin write_gcm
+LoadPlugin write_log
+
+PreCacheChain "PreCache"
+
+<Chain "PreCache">
+
+  <Rule "custom-exec-rule1">
+    <Match "regex">
+      Plugin "^plugin$"
+      PluginInstance "^plugin_instance$"
+      Type "^gauge$" # Here we should be able to pick more than just gauge
+      TypeInstance "^type_instance$"
+    </Match>
+
+    #<Target "set">
+    #  # This is were we send this metric: SD Metric is actually "custom/puppet/last_run" in the SD Web GUI
+    #  MetaData "stackdriver_metric_type" "custom.googleapis.com/puppet/last_run"
+    #  # Allow setting labels here! 
+    #  #MetaData "label:metric" "%{type_instance}"
+    #</Target>
+  </Rule>
+ 
+  <Target "write">
+    Plugin "write_gcm"
+  </Target>
+
+</Chain>
